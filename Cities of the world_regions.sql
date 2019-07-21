@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.15, for macos10.14 (x86_64)
 --
--- Host: 192.168.1.44    Database: Страны и города мира
+-- Host: 192.168.1.44    Database: Cities of the world
 -- ------------------------------------------------------
 -- Server version	8.0.13
 
@@ -16,28 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `Cities`
+-- Table structure for table `regions`
 --
 
-DROP TABLE IF EXISTS `Cities`;
+DROP TABLE IF EXISTS `regions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `Cities` (
+CREATE TABLE `regions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_country` int(3) NOT NULL,
-  `id_region` int(5) NOT NULL,
-  `Name` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
-  PRIMARY KEY (`id`)
+  `country_id` int(11) NOT NULL,
+  `title` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `title` (`title`),
+  KEY `title_2` (`title`),
+  KEY `country_region_fk` (`country_id`),
+  CONSTRAINT `country_region_fk` FOREIGN KEY (`country_id`) REFERENCES `countries` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `Cities`
+-- Dumping data for table `regions`
 --
 
-LOCK TABLES `Cities` WRITE;
-/*!40000 ALTER TABLE `Cities` DISABLE KEYS */;
-/*!40000 ALTER TABLE `Cities` ENABLE KEYS */;
+LOCK TABLES `regions` WRITE;
+/*!40000 ALTER TABLE `regions` DISABLE KEYS */;
+/*!40000 ALTER TABLE `regions` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -49,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-07-21 16:44:54
+-- Dump completed on 2019-07-21 21:06:09

@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.15, for macos10.14 (x86_64)
 --
--- Host: 192.168.1.44    Database: Страны и города мира
+-- Host: 192.168.1.44    Database: Cities of the world
 -- ------------------------------------------------------
 -- Server version	8.0.13
 
@@ -16,27 +16,26 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `Regions`
+-- Table structure for table `countries`
 --
 
-DROP TABLE IF EXISTS `Regions`;
+DROP TABLE IF EXISTS `countries`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `Regions` (
+CREATE TABLE `countries` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_country` int(3) NOT NULL,
-  `Name` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `title` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `Regions`
+-- Dumping data for table `countries`
 --
 
-LOCK TABLES `Regions` WRITE;
-/*!40000 ALTER TABLE `Regions` DISABLE KEYS */;
-/*!40000 ALTER TABLE `Regions` ENABLE KEYS */;
+LOCK TABLES `countries` WRITE;
+/*!40000 ALTER TABLE `countries` DISABLE KEYS */;
+/*!40000 ALTER TABLE `countries` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -48,4 +47,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-07-21 16:44:54
+-- Dump completed on 2019-07-21 21:06:10
