@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.15, for macos10.14 (x86_64)
 --
--- Host: 192.168.1.44    Database: Cities of the world
+-- Host: 192.168.8.104    Database: Cities of the world
 -- ------------------------------------------------------
 -- Server version	8.0.13
 
@@ -31,7 +31,7 @@ CREATE TABLE `regions` (
   KEY `title_2` (`title`),
   KEY `country_region_fk` (`country_id`),
   CONSTRAINT `country_region_fk` FOREIGN KEY (`country_id`) REFERENCES `countries` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,6 +40,7 @@ CREATE TABLE `regions` (
 
 LOCK TABLES `regions` WRITE;
 /*!40000 ALTER TABLE `regions` DISABLE KEYS */;
+INSERT INTO `regions` VALUES (1,1,'Ленинградская область'),(2,1,'Ставропольский край'),(3,1,'Ростовская область'),(4,1,'Московская область'),(5,2,'Валенсия'),(6,2,'Андалусия'),(7,3,'Абруцци'),(8,3,'Апулия'),(9,3,'Базиликата'),(10,4,'Калифорния'),(11,4,'Флорида'),(12,5,'Большой Лондон'),(13,6,'Бургундия'),(14,6,'Аквитания');
 /*!40000 ALTER TABLE `regions` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-07-21 21:06:09
+-- Dump completed on 2019-07-26 21:02:20
