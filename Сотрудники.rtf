@@ -1,0 +1,65 @@
+{\rtf1\ansi\ansicpg1251\cocoartf1671\cocoasubrtf200
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 create schema if not exists `workers`\
+ default char set  utf8mb4 collate utf8mb4_unicode_ci;\
+ use workers;\
+ CREATE TABLE IF NOT EXISTS `depart` (\
+`id` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,\
+`name` VARCHAR(40) NOT NULL,\
+`count` INT DEFAULT 0) ; \
+create table if not exists `shtat`(\
+`id` int not null primary key auto_increment,\
+`name` varchar(25) not null,\
+`lastname` varchar(30) not null,\
+`dep_id` int not null,\
+`salary`int not null);\
+select * from `shtat`;\
+\
+alter table `shtat`\
+add constraint `dep_fk` foreign key (`dep_id`)\
+references `depart`(`id`)\
+on update cascade\
+on delete restrict;\
+\
+insert into `depart`(`name`) \
+values ('IT'),('\uc0\u1041 \u1091 \u1093 \u1075 \u1072 \u1083 \u1090 \u1077 \u1088 \u1080 \u1103 '),('\u1057 \u1090 \u1086 \u1083 \u1086 \u1074 \u1072 \u1103 '),('\u1054 \u1093 \u1088 \u1072 \u1085 \u1072 '),('\u1056 \u1077 \u1082 \u1083 \u1072 \u1084 \u1072 '),('\u1050 \u1086 \u1085 \u1090 \u1088 \u1086 \u1083 \u1100  \u1082 \u1072 \u1095 -\u1074 \u1072 '),('HR');\
+\
+ALTER TABLE `shtat` ADD COLUMN `position` VARCHAR(40);\
+\
+insert into `shtat` \
+(`name`,`lastname`,`dep_id`,`salary`, `position`) VALUES\
+('\uc0\u1048 \u1088 \u1080 \u1085 \u1072 ','\u1050 \u1077 \u1085 \u1080 \u1085 \u1072 ',2,30000,'\u1041 \u1091 \u1093 \u1075 \u1072 \u1083 \u1090 \u1077 \u1088 '),\
+('\uc0\u1040 \u1085 \u1072 \u1090 \u1086 \u1083 \u1080 \u1081 ','\u1041 \u1072 \u1096 \u1083 \u1099 \u1082 \u1086 \u1074 ',1,40000,'\u1055 \u1088 \u1086 \u1075 \u1088 \u1072 \u1084 \u1084 \u1080 \u1089 \u1090 '),\
+('\uc0\u1054 \u1083 \u1100 \u1075 \u1072 ','\u1042 \u1077 \u1088 \u1096 \u1080 \u1085 \u1080 \u1085 \u1072 ',2,50000,'\u1043 \u1083 \u1072 \u1074 \u1073 \u1091 \u1093 ');\
+insert into `shtat` \
+(`name`,`lastname`,`dep_id`,`salary`, `position`) VALUES\
+('\uc0\u1048 \u1088 \u1080 \u1085 \u1072 ','\u1040 \u1088 \u1090 \u1077 \u1084 \u1077 \u1085 \u1082 \u1086 ',5,70000,'\u1052 \u1072 \u1088 \u1082 \u1077 \u1090 \u1086 \u1083 \u1086 \u1075 '),\
+('\uc0\u1040 \u1088 \u1090 \u1077 \u1084 ','\u1057 \u1091 \u1095 \u1082 \u1086 \u1074 ',6,50000,'\u1057 \u1087 \u1077 \u1094 \u1080 \u1072 \u1083 \u1080 \u1089 \u1090 '),\
+('\uc0\u1054 \u1083 \u1077 \u1089 \u1103 ','\u1043 \u1088 \u1080 \u1075 \u1086 \u1088 \u1100 \u1077 \u1074 \u1072 ',7,54000,'\u1057 \u1087 \u1077 \u1094 \u1080 \u1072 \u1083 \u1080 \u1089 \u1090 ');\
+\
+select * from `depart`;\
+select * from `shtat`;\
+\
+\uc0\u1047 \u1040 \u1044 \u1040 \u1053 \u1048 \u1045  1 ) select avg(`salary`) from `shtat`;\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \uc0\u1047 \u1040 \u1044 \u1040 \u1053 \u1048 \u1045  2 )select max(`salary`) from `shtat`;\
+\
+\uc0\u1047 \u1040 \u1044 \u1040 \u1053 \u1048 \u1045  3 )delete from `shtat` where `id` = \
+ (select * from (select `id` from `shtat` where `salary`= (select max(`salary`) from `shtat` )) as `temp`);\
+\
+\uc0\u1047 \u1040 \u1044 \u1040 \u1053 \u1048 \u1045  4 )select count(*) from `shtat`;\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \uc0\u1047 \u1040 \u1044 \u1040 \u1053 \u1048 \u1045  5 )SELECT `depart`.`name`, sum(`shtat`.`salary`) AS `\uc0\u1054 \u1073 \u1097 \u1072 \u1103  \u1047 \u1055 `, count(*) as `\u1050 \u1086 \u1083 -\u1074 \u1086  \u1089 \u1086 \u1090 \u1088 `\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 FROM `shtat`\
+INNER JOIN `depart` ON `shtat`.`dep_id` = `depart`.`id` \
+GROUP BY `depart`.`name`;\
+ }

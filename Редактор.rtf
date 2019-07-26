@@ -91,4 +91,22 @@ ADD CONSTRAINT `country_region_fk`\
   REFERENCES `Cities of the world`.`countries` (`id`)\
   ON DELETE RESTRICT\
   ON UPDATE CASCADE;\
-}
+\
+ USE `Cities of the world`;\
+ SELECT * FROM `countries`;\
+ INSERT INTO `countries` (`title`) VALUES ('\uc0\u1056 \u1086 \u1089 \u1089 \u1080 \u1103 '),('\u1048 \u1089 \u1087 \u1072 \u1085 \u1080 \u1103 '),('\u1048 \u1090 \u1072 \u1083 \u1080 \u1103 '),('\u1057 \u1064 \u1040 '),('\u1040 \u1085 \u1075 \u1083 \u1080 \u1103 '),('\u1060 \u1088 \u1072 \u1085 \u1094 \u1080 \u1103 ');\
+ SELECT * FROM regions;\
+ INSERT INTO `regions` (`country_id`,`title`) VALUES (1, '\uc0\u1051 \u1077 \u1085 \u1080 \u1085 \u1075 \u1088 \u1072 \u1076 \u1089 \u1082 \u1072 \u1103  \u1086 \u1073 \u1083 \u1072 \u1089 \u1090 \u1100 '), (1, '\u1057 \u1090 \u1072 \u1074 \u1088 \u1086 \u1087 \u1086 \u1083 \u1100 \u1089 \u1082 \u1080 \u1081  \u1082 \u1088 \u1072 \u1081 '),(1, '\u1056 \u1086 \u1089 \u1090 \u1086 \u1074 \u1089 \u1082 \u1072 \u1103  \u1086 \u1073 \u1083 \u1072 \u1089 \u1090 \u1100 '),(1, '\u1052 \u1086 \u1089 \u1082 \u1074 \u1089 \u1082 \u1072 \u1103  \u1086 \u1073 \u1083 \u1072 \u1089 \u1090 \u1100 '),(2, '\u1042 \u1072 \u1083 \u1077 \u1085 \u1089 \u1080 \u1103 '),(2, '\u1040 \u1085 \u1076 \u1072 \u1083 \u1091 \u1089 \u1080 \u1103 '),(3, '\u1040 \u1073 \u1088 \u1091 \u1094 \u1094 \u1080 '),(3, '\u1040 \u1087 \u1091 \u1083 \u1080 \u1103 '),(3, '\u1041 \u1072 \u1079 \u1080 \u1083 \u1080 \u1082 \u1072 \u1090 \u1072 '),(4, '\u1050 \u1072 \u1083 \u1080 \u1092 \u1086 \u1088 \u1085 \u1080 \u1103 '),(4, '\u1060 \u1083 \u1086 \u1088 \u1080 \u1076 \u1072 '),(5, '\u1041 \u1086 \u1083 \u1100 \u1096 \u1086 \u1081  \u1051 \u1086 \u1085 \u1076 \u1086 \u1085 '),(6, '\u1041 \u1091 \u1088 \u1075 \u1091 \u1085 \u1076 \u1080 \u1103 '),(6, '\u1040 \u1082 \u1074 \u1080 \u1090 \u1072 \u1085 \u1080 \u1103 ');\
+ SELECT * FROM `cities`;\
+ UPDATE `regions` SET `title` = '\uc0\u1052 \u1086 \u1089 \u1082 \u1086 \u1074 \u1089 \u1082 \u1072 \u1103  \u1086 \u1073 \u1083 \u1072 \u1089 \u1090 \u1100 ' WHERE `title` = '\u1052 \u1086 \u1089 \u1082 \u1074 \u1089 \u1082 \u1072 \u1103  \u1086 \u1073 \u1083 \u1072 \u1089 \u1090 \u1100 ';\
+ ALTER TABLE `cities` CHANGE COLUMN `important` `important` TINYINT(1) NULL;\
+ INSERT INTO `cities` (`country_id`,`region_id`,`title`) VALUES (1,1,'\uc0\u1057 \u1072 \u1085 \u1082 \u1090 -\u1055 \u1077 \u1090 \u1077 \u1088 \u1073 \u1091 \u1088 \u1075 '),(1,1,'\u1043 \u1072 \u1090 \u1095 \u1080 \u1085 \u1072 '),(1,1,'\u1055 \u1091 \u1096 \u1082 \u1080 \u1085 '),(1,1,'\u1055 \u1072 \u1074 \u1083 \u1086 \u1074 \u1089 \u1082 '),(1,2,'\u1057 \u1090 \u1072 \u1074 \u1088 \u1086 \u1087 \u1086 \u1083 \u1100 '),(1,2,'\u1050 \u1080 \u1089 \u1083 \u1086 \u1074 \u1086 \u1076 \u1089 \u1082 '),(1,3,'\u1056 \u1086 \u1089 \u1090 \u1086 \u1074 '),(1,3,'\u1058 \u1072 \u1075 \u1072 \u1085 \u1088 \u1086 \u1075 '),(1,4,'\u1052 \u1086 \u1089 \u1082 \u1074 \u1072 '),(1,4,'\u1057 \u1077 \u1088 \u1087 \u1091 \u1093 \u1086 \u1074 ');\
+\
+\uc0\u1047 A\u1044 \u1040 \u1053 \u1048 \u1045  1 ) SELECT  cities.title, regions.title, countries.title  FROM  cities LEFT JOIN (regions, countries) ON (regions.id = cities.region_id AND countries.id = cities.country_id);\
+\
+\uc0\u1047 \u1040 \u1044 \u1040 \u1053 \u1048 \u1045  2 ) SELECT  cities.title, regions.title, countries.title  FROM  cities LEFT JOIN (regions, countries) \
+ ON (regions.id = cities.region_id AND countries.id = cities.country_id)\
+ WHERE regions.title = '\uc0\u1052 \u1086 \u1089 \u1082 \u1086 \u1074 \u1089 \u1082 \u1072 \u1103  \u1086 \u1073 \u1083 \u1072 \u1089 \u1090 \u1100 ';\
+\
+\
+ }
