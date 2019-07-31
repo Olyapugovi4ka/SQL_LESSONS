@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.15, for macos10.14 (x86_64)
 --
--- Host: 192.168.8.104    Database: workers
+-- Host: 192.168.1.34    Database: workers
 -- ------------------------------------------------------
 -- Server version	8.0.13
 
@@ -16,28 +16,29 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `depart`
+-- Table structure for table `dates`
 --
 
-DROP TABLE IF EXISTS `depart`;
+DROP TABLE IF EXISTS `dates`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `depart` (
+CREATE TABLE `dates` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `count` int(11) DEFAULT '0',
+  `emp_id` int(11) NOT NULL,
+  `entrance` date DEFAULT NULL,
+  `layoff` date DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `depart`
+-- Dumping data for table `dates`
 --
 
-LOCK TABLES `depart` WRITE;
-/*!40000 ALTER TABLE `depart` DISABLE KEYS */;
-INSERT INTO `depart` VALUES (1,'IT',0),(2,'Бухгалтерия',0),(3,'Столовая',0),(4,'Охрана',0),(5,'Реклама',0),(6,'Контроль кач-ва',0),(7,'HR',0);
-/*!40000 ALTER TABLE `depart` ENABLE KEYS */;
+LOCK TABLES `dates` WRITE;
+/*!40000 ALTER TABLE `dates` DISABLE KEYS */;
+INSERT INTO `dates` VALUES (1,2,'2019-07-30',NULL),(2,1,'2019-07-30',NULL),(3,3,'2019-07-30',NULL),(4,5,'2019-07-30',NULL),(5,6,'2019-07-30',NULL),(6,9,'2019-07-31',NULL),(7,10,'2019-07-31',NULL);
+/*!40000 ALTER TABLE `dates` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -49,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-07-26 22:36:27
+-- Dump completed on 2019-07-31 22:40:52
