@@ -35,10 +35,8 @@ insert into `shtat` \
 (`name`,`lastname`,`dep_id`,`salary`, `position`) VALUES\
 ('\uc0\u1048 \u1088 \u1080 \u1085 \u1072 ','\u1050 \u1077 \u1085 \u1080 \u1085 \u1072 ',2,30000,'\u1041 \u1091 \u1093 \u1075 \u1072 \u1083 \u1090 \u1077 \u1088 '),\
 ('\uc0\u1040 \u1085 \u1072 \u1090 \u1086 \u1083 \u1080 \u1081 ','\u1041 \u1072 \u1096 \u1083 \u1099 \u1082 \u1086 \u1074 ',1,40000,'\u1055 \u1088 \u1086 \u1075 \u1088 \u1072 \u1084 \u1084 \u1080 \u1089 \u1090 '),\
-('\uc0\u1054 \u1083 \u1100 \u1075 \u1072 ','\u1042 \u1077 \u1088 \u1096 \u1080 \u1085 \u1080 \u1085 \u1072 ',2,50000,'\u1043 \u1083 \u1072 \u1074 \u1073 \u1091 \u1093 ');\
-insert into `shtat` \
-(`name`,`lastname`,`dep_id`,`salary`, `position`) VALUES\
-('\uc0\u1048 \u1088 \u1080 \u1085 \u1072 ','\u1040 \u1088 \u1090 \u1077 \u1084 \u1077 \u1085 \u1082 \u1086 ',5,70000,'\u1052 \u1072 \u1088 \u1082 \u1077 \u1090 \u1086 \u1083 \u1086 \u1075 '),\
+('\uc0\u1054 \u1083 \u1100 \u1075 \u1072 ','\u1042 \u1077 \u1088 \u1096 \u1080 \u1085 \u1080 \u1085 \u1072 ',2,50000,'\u1043 \u1083 \u1072 \u1074 \u1073 \u1091 \u1093 \'92),\
+('\uc0\u1048 \u1088 \u1080 \u1085 \u1072 ', '\u1040 \u1088 \u1090 \u1077 \u1084 \u1077 \u1085 \u1082 \u1086 ', 70000, '\u1052 \u1072 \u1088 \u1082 \u1077 \u1090 \u1086 \u1083 \u1086 \u1075 '),\
 ('\uc0\u1040 \u1088 \u1090 \u1077 \u1084 ','\u1057 \u1091 \u1095 \u1082 \u1086 \u1074 ',6,50000,'\u1057 \u1087 \u1077 \u1094 \u1080 \u1072 \u1083 \u1080 \u1089 \u1090 '),\
 ('\uc0\u1054 \u1083 \u1077 \u1089 \u1103 ','\u1043 \u1088 \u1080 \u1075 \u1086 \u1088 \u1100 \u1077 \u1074 \u1072 ',7,54000,'\u1057 \u1087 \u1077 \u1094 \u1080 \u1072 \u1083 \u1080 \u1089 \u1090 ');\
 \
@@ -47,19 +45,118 @@ select * from `shtat`;\
 \
 \uc0\u1047 \u1040 \u1044 \u1040 \u1053 \u1048 \u1045  1 ) select avg(`salary`) from `shtat`;\
 \
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
-\cf0 \uc0\u1047 \u1040 \u1044 \u1040 \u1053 \u1048 \u1045  2 )select max(`salary`) from `shtat`;\
+\uc0\u1047 \u1040 \u1044 \u1040 \u1053 \u1048 \u1045  2 )select max(`salary`) from `shtat`;\
 \
 \uc0\u1047 \u1040 \u1044 \u1040 \u1053 \u1048 \u1045  3 )delete from `shtat` where `id` = \
  (select * from (select `id` from `shtat` where `salary`= (select max(`salary`) from `shtat` )) as `temp`);\
 \
 \uc0\u1047 \u1040 \u1044 \u1040 \u1053 \u1048 \u1045  4 )select count(*) from `shtat`;\
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
-\cf0 \
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
-\cf0 \uc0\u1047 \u1040 \u1044 \u1040 \u1053 \u1048 \u1045  5 )SELECT `depart`.`name`, sum(`shtat`.`salary`) AS `\uc0\u1054 \u1073 \u1097 \u1072 \u1103  \u1047 \u1055 `, count(*) as `\u1050 \u1086 \u1083 -\u1074 \u1086  \u1089 \u1086 \u1090 \u1088 `\
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
-\cf0 FROM `shtat`\
+\
+\uc0\u1047 \u1040 \u1044 \u1040 \u1053 \u1048 \u1045  5 )SELECT `depart`.`name`, sum(`shtat`.`salary`) AS `\u1054 \u1073 \u1097 \u1072 \u1103  \u1047 \u1055 `, count(*) as `\u1050 \u1086 \u1083 -\u1074 \u1086  \u1089 \u1086 \u1090 \u1088 `\
+FROM `shtat`\
 INNER JOIN `depart` ON `shtat`.`dep_id` = `depart`.`id` \
 GROUP BY `depart`.`name`;\
- }
+ \
+create table if not exists `dates`(\
+`id` int not null auto_increment primary key,\
+`emp_id` int not null,\
+`entrance` date,\
+`layoff` date\
+);\
+\
+insert into `dates` (`entrance`, `emp_id` ) select curdate(), `id` from `shtat`;\
+select * from dates;\
+select `shtat`.`name`, `shtat`.`lastname`, `shtat`.`salary`, `shtat`.`position`,\
+ `depart`.`name` , `dates`.`entrance`, `dates`.`layoff` from `shtat`\
+ left JOIN `depart` ON `shtat`.`dep_id` = `depart`.`id`\
+ left join `dates` on `shtat`.`id` = `dates`.`emp_id`;\
+# select `shtat`.`name` from\
+create view `emp1` as\
+select `name`, `lastname`, `dep_id` from `shtat`;\
+select * from `emp1`;\
+\
+select `name` from `emp1`;\
+update `emp1` set `name` = '\uc0\u1040 \u1083 \u1105 \u1085 \u1072 ' where `name` = '\u1048 \u1088 \u1080 \u1085 \u1072 ';\
+select * from `shtat`;\
+\
+create view `emp2` as\
+select `shtat`.`name`, `shtat`.`lastname`, `shtat`.`salary`, `shtat`.`position`,\
+ `depart`.`name` , `dates`.`entrance`, `dates`.`layoff` from `shtat`\
+ left JOIN `depart` ON `shtat`.`dep_id` = `depart`.`id`\
+ left join `dates` on `shtat`.`id` = `dates`.`emp_id`;\
+select * from `emp2`;\
+\
+1. \
+CREATE VIEW `average_salary` AS\
+SELECT AVG(`salary`) AS `\uc0\u1089 \u1088 \u1077 \u1076 \u1085 \u1103 \u1103  \u1079 \u1072 \u1088 \u1087 \u1083 \u1072 \u1090 \u1072 `, `depart`.`name` AS `\u1086 \u1090 \u1076 \u1077 \u1083 `\
+ from `shtat`\
+LEFT JOIN `depart` ON `shtat`.`dep_id` = `depart`.`id`\
+GROUP BY `depart`.`name`;\
+\
+CREATE VIEW `max_salary` AS\
+SELECT `shtat`.`id`, `shtat`.`name` AS `\uc0\u1080 \u1084 \u1103 `,\
+ `shtat`.`lastname` AS `\uc0\u1092 \u1072 \u1084 \u1080 \u1083 \u1080 \u1103 ` ,\
+ `shtat`.`dep_id`, `shtat`.`salary` AS `\uc0\u1079 \u1072 \u1088 \u1087 \u1083 \u1072 \u1090 \u1072 `,\
+ `shtat`.`position` AS `\uc0\u1076 \u1086 \u1083 \u1078 \u1085 \u1086 \u1089 \u1090 \u1100 `\
+ FROM `shtat` WHERE `salary` = \
+(SELECT MAX(`salary`) FROM `shtat`);\
+\
+CREATE VIEW `total_salary` AS\
+SELECT `depart`.`name`, sum(`shtat`.`salary`) AS `\uc0\u1054 \u1073 \u1097 \u1072 \u1103  \u1047 \u1055 `, count(*) as `\u1050 \u1086 \u1083 -\u1074 \u1086  \u1089 \u1086 \u1090 \u1088 `\
+FROM `shtat`\
+INNER JOIN `depart` ON `shtat`.`dep_id` = `depart`.`id` \
+GROUP BY `depart`.`name`;\
+\
+2.\
+delimiter //\
+CREATE PROCEDURE `search_emp`\
+(`emp_name` VARCHAR(25), `emp_lastname` VARCHAR(30))\
+BEGIN\
+SET @a = (SELECT `id` FROM `shtat` \
+WHERE `shtat`.`name` = `emp_name` AND `shtat`.`lastname` = `emp_lastname`);\
+SELECT * FROM `shtat` WHERE `id` = @a;\
+END\
+//\
+delimiter ;\
+SELECT * FROM `shtat`;\
+CALL `search_emp`('\uc0\u1048 \u1088 \u1080 \u1085 \u1072 ', '\u1050 \u1077 \u1085 \u1080 \u1085 \u1072 ');\
+\
+3.\
+ALTER TABLE `shtat`\
+DROP COLUMN `salary`;\
+\
+CREATE TABLE IF NOT EXISTS `salary` (\
+`id` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,\
+`emp_id` INT NOT NULL,\
+`emp_salary` INT,\
+`bonus` INT);\
+\
+ALTER TABLE `salary`\
+ADD CONSTRAINT `emp_fk` FOREIGN KEY (`emp_id`)\
+REFERENCES `shtat` (`id`)\
+ON UPDATE CASCADE\
+ON DELETE RESTRICT;\
+\
+ALTER TABLE `shtat`\
+AUTO_INCREMENT = 4; - \uc0\u1087 \u1086 \u1095 \u1077 \u1084 \u1091  - \u1090 \u1086  \u1085 \u1077  \u1089 \u1088 \u1072 \u1073 \u1086 \u1090 \u1072 \u1083 \u1086 \
+\
+INSERT INTO `salary` (`emp_id`, `emp_salary`)\
+VALUES (1, 30000), (2, 40000), (3, 50000), (7, 60000), (5, 70000), (6, 80000);\
+\
+CREATE TRIGGER `welcome`\
+AFTER INSERT ON `shtat`\
+FOR EACH ROW\
+INSERT INTO `dates` (`emp_id`,`entrance`) VALUES (NEW.id, NOW());\
+\
+CREATE TRIGGER `goodbye`\
+BEFORE DELETE ON `shtat`\
+FOR EACH ROW\
+UPDATE `dates` SET `layoff` = CURDATE() WHERE `emp_id` = OLD.id;\
+\
+CREATE TRIGGER `bonus`\
+AFTER INSERT ON `shtat`\
+FOR EACH ROW\
+INSERT INTO `salary`(`emp_id`,`bonus`) VALUES (NEW.id, 10000); \
+\
+INSERT INTO `shtat`(`name`,`lastname`,`dep_id`, `position`) VALUES\
+('\uc0\u1040 \u1083 \u1077 \u1082 \u1089 \u1072 \u1085 \u1076 \u1088 \u1072 ','\u1057 \u1072 \u1096 \u1080 \u1085 \u1072 ', 1,'\u1055 \u1088 \u1086 \u1075 \u1088 \u1072 \u1084 \u1084 \u1080 \u1089 \u1090 ');}
