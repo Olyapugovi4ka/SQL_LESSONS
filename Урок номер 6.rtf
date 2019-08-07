@@ -1,0 +1,334 @@
+{\rtf1\ansi\ansicpg1251\cocoartf1671\cocoasubrtf200
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 inet 192.168.1.34\
+\
+http://dev.mysql.com/doc/mysql/en/server-system-variables.html\
+\
+\uc0\u1050 \u1086 \u1087 \u1080 \u1103  \u1092 \u1072 \u1081 \u1083 \u1072  dump\
+\
+-- MySQL dump 10.13  Distrib 8.0.13, for Linux (x86_64)\
+--\
+-- Host: localhost    Database: workers\
+-- ------------------------------------------------------\
+-- Server version	8.0.13\
+\
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;\
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;\
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;\
+ SET NAMES utf8mb4 ;\
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;\
+/*!40103 SET TIME_ZONE='+00:00' */;\
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;\
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;\
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;\
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;\
+\
+--\
+-- Table structure for table `dates`\
+--\
+\
+DROP TABLE IF EXISTS `dates`;\
+/*!40101 SET @saved_cs_client     = @@character_set_client */;\
+ SET character_set_client = utf8mb4 ;\
+CREATE TABLE `dates` (\
+  `id` int(11) NOT NULL AUTO_INCREMENT,\
+  `emp_id` int(11) NOT NULL,\
+  `entrance` date DEFAULT NULL,\
+  `layoff` date DEFAULT NULL,\
+  PRIMARY KEY (`id`)\
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;\
+/*!40101 SET character_set_client = @saved_cs_client */;\
+\
+--\
+-- Dumping data for table `dates`\
+--\
+\
+LOCK TABLES `dates` WRITE;\
+/*!40000 ALTER TABLE `dates` DISABLE KEYS */;\
+INSERT INTO `dates` VALUES (1,2,'2019-07-30',NULL),(2,1,'2019-07-30',NULL),(3,3,'2019-07-30',NULL),(4,5,'2019-07-30',NULL),(5,6,'2019-07-30',NULL),(6,9,'2019-07-31',NULL),(7,10,'2019-07-31',NULL),(8,11,'2019-08-05',NULL);\
+/*!40000 ALTER TABLE `dates` ENABLE KEYS */;\
+UNLOCK TABLES;\
+\
+--\
+-- Table structure for table `depart`\
+--\
+\
+DROP TABLE IF EXISTS `depart`;\
+/*!40101 SET @saved_cs_client     = @@character_set_client */;\
+ SET character_set_client = utf8mb4 ;\
+CREATE TABLE `depart` (\
+  `id` int(11) NOT NULL AUTO_INCREMENT,\
+  `name` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,\
+  `count` int(11) DEFAULT '0',\
+  PRIMARY KEY (`id`)\
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;\
+/*!40101 SET character_set_client = @saved_cs_client */;\
+\
+--\
+-- Dumping data for table `depart`\
+--\
+\
+LOCK TABLES `depart` WRITE;\
+/*!40000 ALTER TABLE `depart` DISABLE KEYS */;\
+INSERT INTO `depart` VALUES (1,'IT',0),(2,'\uc0\u1041 \u1091 \u1093 \u1075 \u1072 \u1083 \u1090 \u1077 \u1088 \u1080 \u1103 ',0),(3,'\u1057 \u1090 \u1086 \u1083 \u1086 \u1074 \u1072 \u1103 ',0),(4,'\u1054 \u1093 \u1088 \u1072 \u1085 \u1072 ',0),(5,'\u1056 \u1077 \u1082 \u1083 \u1072 \u1084 \u1072 ',0),(6,'\u1050 \u1086 \u1085 \u1090 \u1088 \u1086 \u1083 \u1100  \u1082 \u1072 \u1095 -\u1074 \u1072 ',0),(7,'HR',0);\
+/*!40000 ALTER TABLE `depart` ENABLE KEYS */;\
+UNLOCK TABLES;\
+\
+--\
+-- Temporary view structure for view `emp1`\
+--\
+\
+DROP TABLE IF EXISTS `emp1`;\
+/*!50001 DROP VIEW IF EXISTS `emp1`*/;\
+SET @saved_cs_client     = @@character_set_client;\
+SET character_set_client = utf8mb4;\
+/*!50001 CREATE VIEW `emp1` AS SELECT \
+ 1 AS `name`,\
+ 1 AS `lastname`,\
+ 1 AS `dep_id`*/;\
+SET character_set_client = @saved_cs_client;\
+\
+--\
+-- Table structure for table `salary`\
+--\
+\
+DROP TABLE IF EXISTS `salary`;\
+/*!40101 SET @saved_cs_client     = @@character_set_client */;\
+ SET character_set_client = utf8mb4 ;\
+CREATE TABLE `salary` (\
+  `id` int(11) NOT NULL AUTO_INCREMENT,\
+  `emp_id` int(11) NOT NULL,\
+  `emp_salary` int(11) DEFAULT NULL,\
+  `bonus` int(11) DEFAULT NULL,\
+  PRIMARY KEY (`id`),\
+  KEY `emp_fk` (`emp_id`),\
+  KEY `emp_salary` (`emp_salary`),\
+  CONSTRAINT `emp_fk` FOREIGN KEY (`emp_id`) REFERENCES `shtat` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE\
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;\
+/*!40101 SET character_set_client = @saved_cs_client */;\
+\
+--\
+-- Dumping data for table `salary`\
+--\
+\
+LOCK TABLES `salary` WRITE;\
+/*!40000 ALTER TABLE `salary` DISABLE KEYS */;\
+INSERT INTO `salary` VALUES (1,1,50000,NULL),(2,2,40000,NULL),(3,3,50000,NULL),(4,7,60000,NULL),(5,5,70000,NULL),(6,6,80000,NULL),(7,10,NULL,10000),(8,11,NULL,10000);\
+/*!40000 ALTER TABLE `salary` ENABLE KEYS */;\
+UNLOCK TABLES;\
+\
+--\
+-- Table structure for table `shtat`\
+--\
+\
+DROP TABLE IF EXISTS `shtat`;\
+/*!40101 SET @saved_cs_client     = @@character_set_client */;\
+ SET character_set_client = utf8mb4 ;\
+CREATE TABLE `shtat` (\
+  `id` int(11) NOT NULL AUTO_INCREMENT,\
+  `name` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,\
+  `lastname` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,\
+  `dep_id` int(11) NOT NULL,\
+  `position` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,\
+  PRIMARY KEY (`id`),\
+  KEY `dep_fk` (`dep_id`),\
+  CONSTRAINT `dep_fk` FOREIGN KEY (`dep_id`) REFERENCES `depart` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE\
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;\
+/*!40101 SET character_set_client = @saved_cs_client */;\
+\
+--\
+-- Dumping data for table `shtat`\
+--\
+\
+LOCK TABLES `shtat` WRITE;\
+/*!40000 ALTER TABLE `shtat` DISABLE KEYS */;\
+INSERT INTO `shtat` VALUES (1,'\uc0\u1048 \u1088 \u1080 \u1085 \u1072 ','\u1050 \u1077 \u1085 \u1080 \u1085 \u1072 ',2,'\u1057 \u1090 \u1072 \u1088 \u1096 \u1080 \u1081  \u1087 \u1088 \u1086 \u1075 \u1088 \u1072 \u1084 \u1084 \u1080 \u1089 \u1090 '),(2,'\u1040 \u1085 \u1072 \u1090 \u1086 \u1083 \u1080 \u1081 ','\u1041 \u1072 \u1096 \u1083 \u1099 \u1082 \u1086 \u1074 ',1,'\u1055 \u1088 \u1086 \u1075 \u1088 \u1072 \u1084 \u1084 \u1080 \u1089 \u1090 '),(3,'\u1054 \u1083 \u1100 \u1075 \u1072 ','\u1042 \u1077 \u1088 \u1096 \u1080 \u1085 \u1080 \u1085 \u1072 ',2,'\u1041 \u1091 \u1093 \u1075 \u1072 \u1083 \u1090 \u1077 \u1088 '),(5,'\u1040 \u1088 \u1090 \u1077 \u1084 ','\u1057 \u1091 \u1095 \u1082 \u1086 \u1074 ',6,'\u1057 \u1087 \u1077 \u1094 \u1080 \u1072 \u1083 \u1080 \u1089 \u1090 '),(6,'\u1054 \u1083 \u1077 \u1089 \u1103 ','\u1043 \u1088 \u1080 \u1075 \u1086 \u1088 \u1100 \u1077 \u1074 \u1072 ',7,'\u1057 \u1087 \u1077 \u1094 \u1080 \u1072 \u1083 \u1080 \u1089 \u1090 '),(7,'\u1048 \u1088 \u1080 \u1085 \u1072 ','\u1040 \u1088 \u1090 \u1077 \u1084 \u1077 \u1085 \u1082 \u1086 ',5,'\u1052 \u1072 \u1088 \u1082 \u1077 \u1090 \u1086 \u1083 \u1086 \u1075 '),(9,'\u1045 \u1082 \u1072 \u1090 \u1077 \u1088 \u1080 \u1085 \u1072 ','\u1050 \u1072 \u1090 \u1080 \u1085 \u1072 ',2,'\u1043 \u1083 \u1072 \u1074 \u1073 \u1091 \u1093 '),(10,'\u1040 \u1083 \u1077 \u1082 \u1089 \u1072 \u1085 \u1076 \u1088 \u1072 ','\u1057 \u1072 \u1096 \u1080 \u1085 \u1072 ',1,'\u1055 \u1088 \u1086 \u1075 \u1088 \u1072 \u1084 \u1084 \u1080 \u1089 \u1090 '),(11,'\u1040 \u1083 \u1077 \u1082 \u1089 \u1072 \u1085 \u1076 \u1088 ','\u1064 \u1072 \u1088 \u1086 \u1074 ',1,'\u1057 \u1090 \u1072 \u1088 \u1096 \u1080 \u1081  \u1055 \u1088 \u1086 \u1075 \u1088 \u1072 \u1084 \u1084 \u1080 \u1089 \u1090 ');\
+/*!40000 ALTER TABLE `shtat` ENABLE KEYS */;\
+UNLOCK TABLES;\
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;\
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;\
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;\
+/*!50003 SET character_set_client  = utf8mb4 */ ;\
+/*!50003 SET character_set_results = utf8mb4 */ ;\
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;\
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;\
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;\
+DELIMITER ;;\
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`%`*/ /*!50003 TRIGGER `welcome` AFTER INSERT ON `shtat` FOR EACH ROW INSERT INTO `dates` (`emp_id`,`entrance`) VALUES (NEW.id, NOW()) */;;\
+DELIMITER ;\
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;\
+/*!50003 SET character_set_client  = @saved_cs_client */ ;\
+/*!50003 SET character_set_results = @saved_cs_results */ ;\
+/*!50003 SET collation_connection  = @saved_col_connection */ ;\
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;\
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;\
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;\
+/*!50003 SET character_set_client  = utf8mb4 */ ;\
+/*!50003 SET character_set_results = utf8mb4 */ ;\
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;\
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;\
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;\
+DELIMITER ;;\
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`%`*/ /*!50003 TRIGGER `bonus` AFTER INSERT ON `shtat` FOR EACH ROW INSERT INTO `salary`(`emp_id`,`bonus`) VALUES (NEW.id, 10000) */;;\
+DELIMITER ;\
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;\
+/*!50003 SET character_set_client  = @saved_cs_client */ ;\
+/*!50003 SET character_set_results = @saved_cs_results */ ;\
+/*!50003 SET collation_connection  = @saved_col_connection */ ;\
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;\
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;\
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;\
+/*!50003 SET character_set_client  = utf8mb4 */ ;\
+/*!50003 SET character_set_results = utf8mb4 */ ;\
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;\
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;\
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;\
+DELIMITER ;;\
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`%`*/ /*!50003 TRIGGER `goodbye` BEFORE DELETE ON `shtat` FOR EACH ROW UPDATE `dates` SET `layoff` = CURDATE() WHERE `emp_id` = OLD.id */;;\
+DELIMITER ;\
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;\
+/*!50003 SET character_set_client  = @saved_cs_client */ ;\
+/*!50003 SET character_set_results = @saved_cs_results */ ;\
+/*!50003 SET collation_connection  = @saved_col_connection */ ;\
+\
+--\
+-- Dumping routines for database 'workers'\
+--\
+/*!50003 DROP PROCEDURE IF EXISTS `search_emp` */;\
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;\
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;\
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;\
+/*!50003 SET character_set_client  = utf8mb4 */ ;\
+/*!50003 SET character_set_results = utf8mb4 */ ;\
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;\
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;\
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;\
+DELIMITER ;;\
+CREATE DEFINER=`root`@`%` PROCEDURE `search_emp`(`emp_name` VARCHAR(25), `emp_lastname` VARCHAR(30))\
+BEGIN\
+SET @a = (SELECT `id` FROM `shtat` \
+WHERE `shtat`.`name` = `emp_name` AND `shtat`.`lastname` = `emp_lastname`);\
+SELECT * FROM `shtat` WHERE `id` = @a;\
+END ;;\
+DELIMITER ;\
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;\
+/*!50003 SET character_set_client  = @saved_cs_client */ ;\
+/*!50003 SET character_set_results = @saved_cs_results */ ;\
+/*!50003 SET collation_connection  = @saved_col_connection */ ;\
+\
+--\
+-- Final view structure for view `emp1`\
+--\
+\
+/*!50001 DROP VIEW IF EXISTS `emp1`*/;\
+/*!50001 SET @saved_cs_client          = @@character_set_client */;\
+/*!50001 SET @saved_cs_results         = @@character_set_results */;\
+/*!50001 SET @saved_col_connection     = @@collation_connection */;\
+/*!50001 SET character_set_client      = utf8mb4 */;\
+/*!50001 SET character_set_results     = utf8mb4 */;\
+/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;\
+/*!50001 CREATE ALGORITHM=UNDEFINED */\
+/*!50013 DEFINER=`root`@`%` SQL SECURITY DEFINER */\
+/*!50001 VIEW `emp1` AS select `shtat`.`name` AS `name`,`shtat`.`lastname` AS `lastname`,`shtat`.`dep_id` AS `dep_id` from `shtat` */;\
+/*!50001 SET character_set_client      = @saved_cs_client */;\
+/*!50001 SET character_set_results     = @saved_cs_results */;\
+/*!50001 SET collation_connection      = @saved_col_connection */;\
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;\
+\
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;\
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;\
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;\
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;\
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;\
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;\
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;\
+\
+-- Dump completed on 2019-08-07 21:14:49\
+\
+\
+\uc0\u1050 \u1086 \u1087 \u1080 \u1103  \u1080 \u1079  \u1090 \u1077 \u1088 \u1084 \u1080 \u1085 \u1072 \u1083 \u1072  \u1089  \u1052 \u1086 \u1085 \u1075 \u1086 \
+\
+root@MySQL8:~# mongo\
+MongoDB shell version v4.0.4\
+connecting to: mongodb://127.0.0.1:27017\
+2019-08-07T21:48:07.946+0300 E QUERY    [js] Error: couldn't connect to server 127.0.0.1:27017, connection attempt failed: SocketException: Error connecting to 127.0.0.1:27017 :: caused by :: Connection refused :\
+connect@src/mongo/shell/mongo.js:257:13\
+@(connect):1:6\
+exception: connect failed\
+root@MySQL8:~# use user\
+bash: use: \uc0\u1082 \u1086 \u1084 \u1072 \u1085 \u1076 \u1072  \u1085 \u1077  \u1085 \u1072 \u1081 \u1076 \u1077 \u1085 \u1072 \
+root@MySQL8:~# use users\
+bash: use: \uc0\u1082 \u1086 \u1084 \u1072 \u1085 \u1076 \u1072  \u1085 \u1077  \u1085 \u1072 \u1081 \u1076 \u1077 \u1085 \u1072 \
+root@MySQL8:~# mongodb\
+bash: mongodb: \uc0\u1082 \u1086 \u1084 \u1072 \u1085 \u1076 \u1072  \u1085 \u1077  \u1085 \u1072 \u1081 \u1076 \u1077 \u1085 \u1072 \
+root@MySQL8:~# mongo\
+MongoDB shell version v4.0.4\
+connecting to: mongodb://127.0.0.1:27017\
+2019-08-07T21:52:36.415+0300 E QUERY    [js] Error: couldn't connect to server 127.0.0.1:27017, connection attempt failed: SocketException: Error connecting to 127.0.0.1:27017 :: caused by :: Connection refused :\
+connect@src/mongo/shell/mongo.js:257:13\
+@(connect):1:6\
+exception: connect failed\
+root@MySQL8:~# service mongodb start\
+Failed to start mongodb.service: Unit mongodb.service not found.\
+root@MySQL8:~# service mongod start\
+root@MySQL8:~# mongo\
+MongoDB shell version v4.0.4\
+connecting to: mongodb://127.0.0.1:27017\
+Implicit session: session \{ "id" : UUID("07e02d39-c09c-4e99-b6db-fe9240906164") \}\
+MongoDB server version: 4.0.4\
+Server has startup warnings: \
+2019-08-07T21:55:31.386+0300 I STORAGE  [initandlisten] \
+2019-08-07T21:55:31.386+0300 I STORAGE  [initandlisten] ** WARNING: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine\
+2019-08-07T21:55:31.386+0300 I STORAGE  [initandlisten] **          See http://dochub.mongodb.org/core/prodnotes-filesystem\
+2019-08-07T21:55:32.723+0300 I CONTROL  [initandlisten] \
+2019-08-07T21:55:32.723+0300 I CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.\
+2019-08-07T21:55:32.723+0300 I CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.\
+2019-08-07T21:55:32.723+0300 I CONTROL  [initandlisten] \
+---\
+Enable MongoDB's free cloud-based monitoring service, which will then receive and display\
+metrics about your deployment (disk utilization, CPU, operation statistics, etc).\
+\
+The monitoring data will be available on a MongoDB website with a unique URL accessible to you\
+and anyone you share the URL with. MongoDB may use this information to make product\
+improvements and to suggest MongoDB products and deployment options to you.\
+\
+To enable free monitoring, run the following command: db.enableFreeMonitoring()\
+To permanently disable this reminder, run the following command: db.disableFreeMonitoring()\
+---\
+\
+> use users\
+switched to db users\
+> db.users.insert(\{"name": "Tom", "age": 28, languages: ["english", "spanish"]\})\
+\
+WriteResult(\{ "nInserted" : 1 \})\
+> db.users.find()\
+\{ "_id" : ObjectId("5d4b1f145f8aee8af3216bf1"), "name" : "Tom", "age" : 28, "languages" : [ "english", "spanish" ] \}\
+> db.users.insert(\{"company":\{"name":"Microsoft","age": 25, languages: ["english", "spanish"]\}\})\
+WriteResult(\{ "nInserted" : 1 \})\
+> db.users.find(\{"company.name": "Microsoft"\})\
+\{ "_id" : ObjectId("5d4b1f525f8aee8af3216bf2"), "company" : \{ "name" : "Microsoft", "age" : 25, "languages" : [ "english", "spanish" ] \} \}\
+> db.users.find (\{age: \{$lt : 30\}\})\
+\{ "_id" : ObjectId("5d4b1f145f8aee8af3216bf1"), "name" : "Tom", "age" : 28, "languages" : [ "english", "spanish" ] \}\
+> db.users.find (\{age: \{$gt : "30"\}\})\
+> db.users.find (\{age: \{$gt : 30, $lt: 50\}\})\
+> db.users.find (\{age: \{$ne : 22\}\})\
+\{ "_id" : ObjectId("5d4b1f145f8aee8af3216bf1"), "name" : "Tom", "age" : 28, "languages" : [ "english", "spanish" ] \}\
+\{ "_id" : ObjectId("5d4b1f525f8aee8af3216bf2"), "company" : \{ "name" : "Microsoft", "age" : 25, "languages" : [ "english", "spanish" ] \} \}\
+> db.users.find (\{$or : [\{name: "Tom"\}, \{age: 22\}]\})\
+\{ "_id" : ObjectId("5d4b1f145f8aee8af3216bf1"), "name" : "Tom", "age" : 28, "languages" : [ "english", "spanish" ] \}\
+> db.users.save(\{name: "Eugene", age : 29, languages: ["english", "german", "spanish"]\})\
+WriteResult(\{ "nInserted" : 1 \})\
+> db.users.update(\{name : "Eugene", age: 29\}, \{$set: \{age : 30\}\})\
+WriteResult(\{ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 \})\
+> db.users.update(\{name : "Tom"\}, \{$unset: \{salary: 1\}\})\
+WriteResult(\{ "nMatched" : 1, "nUpserted" : 0, "nModified" : 0 \})\
+> db.users.update(\{name : "Tom"\}, \{$unset: \{salary: 1, age: 1\}\})\
+WriteResult(\{ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 \})\
+> \
+\
+}
