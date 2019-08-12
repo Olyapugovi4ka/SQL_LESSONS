@@ -108,5 +108,115 @@ ADD CONSTRAINT `country_region_fk`\
  ON (regions.id = cities.region_id AND countries.id = cities.country_id)\
  WHERE regions.title = '\uc0\u1052 \u1086 \u1089 \u1082 \u1086 \u1074 \u1089 \u1082 \u1072 \u1103  \u1086 \u1073 \u1083 \u1072 \u1089 \u1090 \u1100 ';\
 \
+12.08.2019\
 \
+\
+root@MySQL8:~# mysql -u root -p123123\
+mysql: [Warning] Using a password on the command line interface can be insecure.\
+Welcome to the MySQL monitor.  Commands end with ; or \\g.\
+Your MySQL connection id is 16\
+Server version: 8.0.13 MySQL Community Server - GPL\
+\
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.\
+\
+Oracle is a registered trademark of Oracle Corporation and/or its\
+affiliates. Other names may be trademarks of their respective\
+owners.\
+\
+Type 'help;' or '\\h' for help. Type '\\c' to clear the current input statement.\
+\
+mysql> use `Cities of the world`;\
+Database changed\
+mysql> CREATE USER IF NOT EXISTS 'big'@'%' IDENTIFIED WITH mysql_native_password BY '123123';\
+Query OK, 0 rows affected (0,08 sec)\
+\
+mysql> GRANT ALL PRIVILEGES ON *.* TO 'big'@'%' WITH GRANT OPTION;\
+Query OK, 0 rows affected (0,10 sec)\
+\
+mysql> FLUSH PRIVILEGES;\
+Query OK, 0 rows affected (0,00 sec)\
+\
+mysql> QUIT\
+Bye\
+root@MySQL8:~# mysql -u big -p123123\
+mysql: [Warning] Using a password on the command line interface can be insecure.\
+Welcome to the MySQL monitor.  Commands end with ; or \\g.\
+Your MySQL connection id is 17\
+Server version: 8.0.13 MySQL Community Server - GPL\
+\
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.\
+\
+Oracle is a registered trademark of Oracle Corporation and/or its\
+affiliates. Other names may be trademarks of their respective\
+owners.\
+\
+Type 'help;' or '\\h' for help. Type '\\c' to clear the current input statement.\
+\
+mysql> show databases;\
++---------------------+\
+| Database            |\
++---------------------+\
+| Cities of the world |\
+| information_schema  |\
+| mysql               |\
+| performance_schema  |\
+| phpmyadmin          |\
+| sys                 |\
+| workers1            |\
++---------------------+\
+7 rows in set (0,00 sec)\
+\
+mysql> CREATE USER 'first_level'@'%'IDENTIFIED WITH mysql_native_password BY '123123';\
+Query OK, 0 rows affected (0,01 sec)\
+\
+mysql> GRANT ALL PRIVILEGES ON `Cities of the world`.* TO 'first_level'@'%' WITH GRANT OPTION;\
+Query OK, 0 rows affected (0,10 sec)\
+\
+mysql> FLUSH PRIVILEGES;\
+Query OK, 0 rows affected (0,01 sec)\
+\
+mysql> quit\
+Bye\
+root@MySQL8:~# mysql -u first_level -p 123123\
+Enter password: \
+ERROR 1044 (42000): Access denied for user 'first_level'@'%' to database '123123'\
+root@MySQL8:~# mysql -u first_level -p\
+Enter password: \
+Welcome to the MySQL monitor.  Commands end with ; or \\g.\
+Your MySQL connection id is 19\
+Server version: 8.0.13 MySQL Community Server - GPL\
+\
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.\
+\
+Oracle is a registered trademark of Oracle Corporation and/or its\
+affiliates. Other names may be trademarks of their respective\
+owners.\
+\
+Type 'help;' or '\\h' for help. Type '\\c' to clear the current input statement.\
+\
+mysql> show databases\
+    -> ;\
++---------------------+\
+| Database            |\
++---------------------+\
+| Cities of the world |\
+| information_schema  |\
++---------------------+\
+2 rows in set (0,00 sec)\
+\
+mysql> use `cities of the world`;\
+ERROR 1044 (42000): Access denied for user 'first_level'@'%' to database 'cities of the world'\
+mysql> use `Cities of the world`;\
+Database changed\
+mysql> show tables;\
++-------------------------------+\
+| Tables_in_Cities of the world |\
++-------------------------------+\
+| cities                        |\
+| countries                     |\
+| regions                       |\
++-------------------------------+\
+3 rows in set (0,00 sec)\
+\
+mysql> \
  }

@@ -214,4 +214,134 @@ mysql> explain SELECT `salary`.`emp_id` FROM `salary` WHERE `emp_salary` = 70000
 1 row in set, 1 warning (0,00 sec)\
 \
 \
+\
+\
+12.08.2019\
+root@MySQL8:~# mysqldump -u root -p123123 workers --routines > /var/backups/backup-`date'+%Y.%m.%d'`.sql\
+bash: date+%Y.%m.%d: \uc0\u1082 \u1086 \u1084 \u1072 \u1085 \u1076 \u1072  \u1085 \u1077  \u1085 \u1072 \u1081 \u1076 \u1077 \u1085 \u1072 \
+mysqldump: [Warning] Using a password on the command line interface can be insecure.\
+root@MySQL8:~# mysqldump -u root -p123123 workers --routines >/var/backups/backup_`date '+%Y.%m.%d'`.sql\
+mysqldump: [Warning] Using a password on the command line interface can be insecure.\
+root@MySQL8:~# mysql -u root -p123123\
+mysql: [Warning] Using a password on the command line interface can be insecure.\
+Welcome to the MySQL monitor.  Commands end with ; or \\g.\
+Your MySQL connection id is 10\
+Server version: 8.0.13 MySQL Community Server - GPL\
+\
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.\
+\
+Oracle is a registered trademark of Oracle Corporation and/or its\
+affiliates. Other names may be trademarks of their respective\
+owners.\
+\
+Type 'help;' or '\\h' for help. Type '\\c' to clear the current input statement.\
+\
+mysql> show dbs\
+    -> ;\
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'dbs' at line 1\
+mysql> show databases\
+    -> ;\
++---------------------+\
+| Database            |\
++---------------------+\
+| Cities of the world |\
+| information_schema  |\
+| mysql               |\
+| performance_schema  |\
+| phpmyadmin          |\
+| sys                 |\
+| workers             |\
++---------------------+\
+7 rows in set (0,00 sec)\
+\
+mysql> delete workers;\
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1\
+mysql> delete database workers;\
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'database workers' at line 1\
+mysql> drop schema if exists `workers`;\
+Query OK, 5 rows affected (0,18 sec)\
+\
+mysql> show databases;\
++---------------------+\
+| Database            |\
++---------------------+\
+| Cities of the world |\
+| information_schema  |\
+| mysql               |\
+| performance_schema  |\
+| phpmyadmin          |\
+| sys                 |\
++---------------------+\
+6 rows in set (0,00 sec)\
+\
+mysql> CREATE DATABASE `workers1`;\
+Query OK, 1 row affected (0,07 sec)\
+\
+mysql> show databases\
+    -> ;\
++---------------------+\
+| Database            |\
++---------------------+\
+| Cities of the world |\
+| information_schema  |\
+| mysql               |\
+| performance_schema  |\
+| phpmyadmin          |\
+| sys                 |\
+| workers1            |\
++---------------------+\
+7 rows in set (0,00 sec)\
+\
+mysql> quit\
+Bye\
+root@MySQL8:~# mysql -u root -p123123 workers1 < /var/backups/backup_`date '+%Y.%m.%d'`.sql\
+mysql: [Warning] Using a password on the command line interface can be insecure.\
+root@MySQL8:~# mysql -u root -p123123\
+mysql: [Warning] Using a password on the command line interface can be insecure.\
+Welcome to the MySQL monitor.  Commands end with ; or \\g.\
+Your MySQL connection id is 12\
+Server version: 8.0.13 MySQL Community Server - GPL\
+\
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.\
+\
+Oracle is a registered trademark of Oracle Corporation and/or its\
+affiliates. Other names may be trademarks of their respective\
+owners.\
+\
+Type 'help;' or '\\h' for help. Type '\\c' to clear the current input statement.\
+\
+mysql> sho databases;\
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'sho databases' at line 1\
+mysql> show databases;\
++---------------------+\
+| Database            |\
++---------------------+\
+| Cities of the world |\
+| information_schema  |\
+| mysql               |\
+| performance_schema  |\
+| phpmyadmin          |\
+| sys                 |\
+| workers1            |\
++---------------------+\
+7 rows in set (0,00 sec)\
+\
+mysql>  use workers1;\
+Reading table information for completion of table and column names\
+You can turn off this feature to get a quicker startup with -A\
+\
+Database changed\
+mysql> show tables;\
++--------------------+\
+| Tables_in_workers1 |\
++--------------------+\
+| dates              |\
+| depart             |\
+| emp1               |\
+| salary             |\
+| shtat              |\
++--------------------+\
+5 rows in set (0,00 sec)\
+\
+mysql> \
 }
